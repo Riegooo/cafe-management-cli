@@ -1,4 +1,4 @@
-const { PENDING, PROCESSING, COMPLETED, CANCELLED } = require('../constant/order-status')
+const { STATUS } = require('../constant/order-status')
 // const { orders, nextOrderId } = require('../state/store');
 const store = require('../state/store');
 const { menu } = require('../config/menu-data');
@@ -22,7 +22,7 @@ function createOrder(orderId, sizeId) {
         menuItem.itemName,
         menuItem.sizes[sizeId],
         price,
-        PENDING
+        STATUS
     )
     store.orders.push(order)
     return order
@@ -58,7 +58,7 @@ function updateOrders(orderId, newItem, newSizes) {
         menuItem.itemName,
         menuItem.sizes[newSizes],
         newPrice,
-        PENDING
+        STATUS
     )
 
     const index = store.orders.findIndex(o => o.id === orderId);
